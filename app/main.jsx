@@ -36,9 +36,9 @@ render (
                         <div id="navbar" className="navbar-collapse collapse">
                             <ul className="nav navbar-nav">
                                 <li className="active"><Link to="/">Home</Link></li>
-                                <li><Link to="/campus">Campuses</Link></li>
-                                <li><Link to="/student">Students</Link></li>
-                                <li><Link to="/instructor">Instructors</Link></li>
+                                <li><Link to="/campuses">Campuses</Link></li>
+                                <li><Link to="/students">Students</Link></li>
+                                <li><Link to="/instructors">Instructors</Link></li>
                                 <li className="dropdown">
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                                     <ul className="dropdown-menu">
@@ -59,18 +59,14 @@ render (
                 {/* BODY */}
                 <div className="container">
                 <Switch>
-                    {/*<Route exact path="/albums" component={StatefulAlbums} />*/}
-                    {/*<Route exact path="/artists" component={AllArtists} />*/}
-                    {/*<Route path="/artists/:artistId" component={SingleArtist} />*/}
                     {/*<Route path="/new-playlist" render={() => <NewPlaylist addPlaylist={this.addPlaylist}/>} />*/}
-                    {/*<Route path="/playlists/:playlistId" component={Playlist} />*/}
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/student" component={Student} />
-                    <Route exact path="/campus" component={Campus} />
-                    <Route exact path="/instructor" component={Instructor} />
-                    <Route path="/student/:studentId" component={SingleStudent} />
-                    <Route path="/campus/:campusId" component={SingleCampus} />
-                    <Route path="/instructor/:instructorId" component={SingleInstructor} />
+                    <Route exact path="/students" component={Student} />
+                    <Route exact path="/campuses" component={Campus} />
+                    <Route exact path="/instructors" component={Instructor} />
+                    <Route path="/students/:studentId" component={SingleStudent} />
+                    <Route path="/campuses/:campusId" component={SingleCampus} />
+                    <Route path="/instructors/:instructorId" component={SingleInstructor} />
                     <Route component={Root} />
                 </Switch>
                 </div>
