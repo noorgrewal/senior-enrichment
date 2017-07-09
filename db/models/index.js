@@ -8,5 +8,9 @@
 const User = require('./user');
 const Campus = require('./campus');
 const Student = require('./student');
+const Instructor = require('./instructor');
 
-module.exports = {User}
+//do relationships here
+
+module.exports = {User,Campus,Student,Instructor};
+

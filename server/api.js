@@ -1,6 +1,7 @@
 'use strict'
 const api = require('express').Router();
 const db = require('../db');
+const models=require('../db/models');
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
 	// I know this because we automatically send index.html for all requests that don't make sense in our backend.
@@ -10,7 +11,14 @@ api.get('/hello', (req, res) => res.send({hello: 'world'}));
 //place apis with sequelize calls here to make json files for ajax calls
 api.get('/users', (req, res) => res.send({hello: 'world'}));
 api.get('/campus', (req, res) => res.send({hello: 'campus'}));
-api.get('/student', (req, res) => res.send({hello: 'student'}));
+api.get('/student', (req, res,next) => {
+    console.log(models.Student.student);
+    // res.send(models.Student);
+    models.Student.findAll({  })
+        .then(students => res.json(students))
+        .catch(next);
+    // res.send({hello: 'student'});
+});
 api.get('/instructor', (req, res) => res.send({hello: 'instructor'}));
 
 module.exports = api;

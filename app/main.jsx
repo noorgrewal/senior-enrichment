@@ -6,14 +6,21 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import store from './store';
 import Root from './components/Root';
+import Home from './components/Home';
 import Student from './components/Student';
 import Instructor from './components/Instructor';
 import Campus from './components/Campus';
+import SingleCampus from './components/SingleCampus';
+import SingleStudent from './components/SingleStudent';
+import SingleInstructor from './components/SingleInstructor';
 
 render (
     <Provider store={store}>
         <Router>
             <div>
+
+
+
                 {/* NAV BAR */}
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
@@ -57,20 +64,22 @@ render (
                     {/*<Route path="/artists/:artistId" component={SingleArtist} />*/}
                     {/*<Route path="/new-playlist" render={() => <NewPlaylist addPlaylist={this.addPlaylist}/>} />*/}
                     {/*<Route path="/playlists/:playlistId" component={Playlist} />*/}
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/student" component={Student} />
                     <Route exact path="/campus" component={Campus} />
                     <Route exact path="/instructor" component={Instructor} />
-                    <Route path="/student/:studentId" component={Student} />
-                    <Route path="/campuse/:campusId" component={Campus} />
-                    <Route path="/instructor/:instructorId" component={Instructor} />
+                    <Route path="/student/:studentId" component={SingleStudent} />
+                    <Route path="/campus/:campusId" component={SingleCampus} />
+                    <Route path="/instructor/:instructorId" component={SingleInstructor} />
                     <Route component={Root} />
                 </Switch>
                 </div>
 
 
+
+
+
             </div>
-
-
         </Router>
     </Provider>,
     document.getElementById('app')
