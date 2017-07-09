@@ -34,7 +34,7 @@ api.get('/students/:studentId', (req, res, next) => {
     else{
         Students.findById(studentId)
         .then(function (data) {
-            if(data){res.send(data);}
+            if(data){res.json(data);}
             else{
                 res.sendStatus(404);
             }
