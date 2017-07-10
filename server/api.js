@@ -4,7 +4,6 @@ const db = require('../db');
 const models=require('../db/models');
 const Students=models.Student;
 const Campuses=models.Campus;
-const Instructors=models.Instructor;
 const Users=models.User;
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
@@ -14,9 +13,8 @@ api.get('/hello', (req, res) => res.send({hello: 'world'}));
 
 //place apis with sequelize calls here to make json files for ajax calls
 api.get('/users', (req, res, next) => {
-    Users.findAll({})
-        .then(users => res.json(users))
-        .catch(next);
+    console.log('users');
+    res.send('Users');
 });
 
 
@@ -24,8 +22,13 @@ api.get('/users', (req, res, next) => {
 // STUDENTS
 api.get('/students', (req, res, next) => {
     Students.findAll({})
-        .then(students => res.json(students))
-        .catch(next);
+    .then(students => res.json(students))
+    .catch(next);
+
+    // Company.findAll({
+    //     include: [ { model: Campuses, as: 'Campus' } ]
+
+
 });
 
 api.get('/students/:studentId', (req, res, next) => {
@@ -111,7 +114,7 @@ api.get('/campuses/:campusId', (req, res, next) => {
     else{
         Campuses.findById(campusId)
         .then(function (data) {
-            if(data){res.send(data);}
+            if(data){res.json(data);}
             else{
                 res.sendStatus(404);
             }
@@ -119,30 +122,36 @@ api.get('/campuses/:campusId', (req, res, next) => {
     }
 });
 
-
-
-
-
-
-// INSTRUCTORS
-api.get('/instructors', (req, res, next) => {
-    Instructors.findAll({})
-        .then(instructors => res.json(instructors))
-        .catch(next);
-});
-
-api.get('/instructors/:instructorId', (req, res, next) => {
-    var instructorId=req.params.instructorId;
-    if(!Number(instructorId)){res.sendStatus(500);}
+api.get('/campuses/:campusId/students', (req, res, next) => {
+    var campusId=req.params.campusId;
+    if(!Number(campusId)){res.sendStatus(500);}
     else{
-        Instructors.findById(instructorId)
+        Students.findAll({where:{campusId:campusId}})
         .then(function (data) {
-            if(data){res.send(data);}
+            if(data){res.json(data);}
             else{
                 res.sendStatus(404);
             }
         });
     }
+});
+
+// how do i do these routes under /api
+// ive been using react routes to 'render' views, so no express routes
+// now I must do a post from a react route! how does that work with the paths?
+// do I make a traditional express route or leave it in here?
+api.post('/campuses/new', (req, res, next) => {
+    console.log(req.body);
+    // Campuses.create({title:'blah'})
+    //     .then(function (data) {
+    //         res.status(201);
+    //         res.send(data);
+    //         do a redirect
+    //     });
+
+    // Playlist.create(req.body)
+    //     .then(playlist => res.status(201).json(playlist))
+    //     .catch(next);
 });
 
 module.exports = api;
