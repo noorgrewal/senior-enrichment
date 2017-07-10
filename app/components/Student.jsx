@@ -23,7 +23,7 @@ export default class Student extends Component{
         return (
             <div>
                 <h1>Students</h1>
-                <h2>List of All Students <Link to="/students/new"><button type="button" className="btn btn-info" style={styles}>+ Add Student</button></Link></h2>
+                <h2>List of All Students <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h2>
 
 
                 <table className="table table-striped">
@@ -59,7 +59,7 @@ export default class Student extends Component{
                                         <td>{ students.campusId }</td>
                                         <td>{ students.email }</td>
                                         <td>{`@${students.firstName}`}</td>
-                                        <td><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                        <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
                                     </tr>
                                 );
                             })

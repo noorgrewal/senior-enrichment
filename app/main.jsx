@@ -8,14 +8,11 @@ import store from './store';
 import Root from './components/Root';
 import Home from './components/Home';
 import Student from './components/Student';
-import Instructor from './components/Instructor';
 import Campus from './components/Campus';
 import SingleCampus from './components/SingleCampus';
 import SingleStudent from './components/SingleStudent';
-import SingleInstructor from './components/SingleInstructor';
 import NewCampus from './components/NewCampus';
 import NewStudent from './components/NewStudent';
-import NewInstructor from './components/NewInstructor';
 
 render (
     <Provider store={store}>
@@ -41,7 +38,6 @@ render (
                                 <li className="active"><Link to="/">Home</Link></li>
                                 <li><Link to="/campuses">Campuses</Link></li>
                                 <li><Link to="/students">Students</Link></li>
-                                <li><Link to="/instructors">Instructors</Link></li>
                                 <li className="dropdown">
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                                     <ul className="dropdown-menu">
@@ -66,13 +62,10 @@ render (
                     <Route exact path="/" component={Home} />
                     <Route exact path="/students" component={Student} />
                     <Route exact path="/campuses" component={Campus} />
-                    <Route exact path="/instructors" component={Instructor} />
                     <Route exact path="/students/new" component={NewStudent} />
                     <Route exact path="/campuses/new" component={NewCampus} />
-                    <Route exact path="/instructors/new" component={NewInstructor} />
                     <Route exact path="/students/:studentId" component={SingleStudent} />
                     <Route exact path="/campuses/:campusId" component={SingleCampus} />
-                    <Route exact path="/instructors/:instructorId" component={SingleInstructor} />
                     <Route component={Root} />
                 </Switch>
                 </div>

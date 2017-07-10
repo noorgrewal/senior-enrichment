@@ -22,7 +22,7 @@ export default class Campus extends Component{
         return (
             <div>
                 <h1>Campuses</h1>
-                <h2>List of All Campuses <Link to="/campuses/new"><button type="button" className="btn btn-info" style={styles}>+ Add Campus</button></Link></h2>
+                <h2>List of All Campuses <Link to="/campuses/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Campus</button></Link></h2>
 
 
                 <table className="table table-striped">
@@ -31,7 +31,7 @@ export default class Campus extends Component{
                         <th>#</th>
                         <th>Photo</th>
                         <th>Campus Name</th>
-                        <th>Delete</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@ export default class Campus extends Component{
                                     <td>{ campuses.id }</td>
                                     <td><Link to={`/campuses/${campuses.id}`}><img src={campuses.image} /></Link></td>
                                     <td><Link to={`/campuses/${campuses.id}`}>{ campuses.name }</Link></td>
-                                    <td><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                    <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
                                 </tr>
                             );
                         })

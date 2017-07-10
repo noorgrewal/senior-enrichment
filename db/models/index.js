@@ -8,9 +8,15 @@
 const User = require('./user');
 const Campus = require('./campus');
 const Student = require('./student');
-const Instructor = require('./instructor');
 
 //do relationships here
+Student.belongsTo(Campus);
+Campus.hasMany(Student);
 
-module.exports = {User,Campus,Student,Instructor};
+// NOT SURE HOW TO SETUP RELATIONSHIPS
+// Student can only belong to one Campus. hasOne or belongsTo?
+// When deleting a Campus do we delete the students? Or how do we modify their campusIDs? Using a default ID?
+// Do not allow a Campus deletion until there are no students associated with it?
+
+module.exports = {User,Campus,Student};
 

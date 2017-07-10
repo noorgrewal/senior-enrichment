@@ -24,11 +24,14 @@ export default class SingleCampus extends Component{
 
     render() {
         const campus=this.state.campus;
+        var styles = {
+            cssFloat:'right'
+        };
 
         return (
             <div key={ campus.id }>
                 <div className="page-header">
-                    <h1>Campus: { campus.name }</h1>
+                    <h1>Campus: { campus.name } <Link to="/campuses/new"><button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button></Link></h1>
                 </div>
                 <div className="row">
                     <div className="col-sm-2">
@@ -40,7 +43,60 @@ export default class SingleCampus extends Component{
                             <li>{ campus.name }</li>
                         </ul>
                     </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12">
 
+                        <h3>All Students in { campus.name } Campus <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h3>
+
+
+                        <table className="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Photo</th>
+                                <th>Student Name</th>
+                                <th>Campus</th>
+                                <th>Email</th>
+                                <th>Username</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>something</td>
+                                    <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>something</td>
+                                    <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>something</td>
+                                    <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
                 </div>
             </div>
 

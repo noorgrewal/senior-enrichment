@@ -24,18 +24,21 @@ export default class SingleStudent extends Component{
 
     render() {
         const student=this.state.student;
+        var styles = {
+            cssFloat:'right'
+        };
 
         return (
             <div key={ student.id }>
                 <div className="page-header">
-                    <h1>Student: { `${student.firstName} ${student.lastName}`}</h1>
+                    <h1>Student: { `${student.firstName} ${student.lastName}`} <Link to="/students/new"><button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button></Link></h1>
                 </div>
                 <div className="row">
-                    <div className="col-sm-1">
+                    <div className="col-sm-2">
                         <img src={ student.image } />
                     </div>
 
-                    <div className="col-sm-2">
+                    <div className="col-sm-3">
                         <ul>
                             <li>{ `${student.firstName} ${student.lastName}`}</li>
                             <li>{ student.email }</li>
