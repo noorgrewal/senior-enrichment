@@ -29,7 +29,7 @@ export default class Campus extends Component{
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Photo</th>
+                        {/*<th>Photo</th>*/}
                         <th>Campus Name</th>
                         <th></th>
                     </tr>
@@ -40,7 +40,7 @@ export default class Campus extends Component{
                             return (
                                 <tr key={campuses.id}>
                                     <td>{ campuses.id }</td>
-                                    <td><Link to={`/campuses/${campuses.id}`}><img src={campuses.image} /></Link></td>
+                                    {/*<td><Link to={`/campuses/${campuses.id}`}><img src={campuses.image} /></Link></td>*/}
                                     <td><Link to={`/campuses/${campuses.id}`}>{ campuses.name }</Link></td>
                                     <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
                                 </tr>

@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 
 export default class NewStudent extends Component{
+    constructor (){
+        super();
+        this.state={formData:{}};
+
+        this.handleSubmit=this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        // console.log(e.target.value);
+    }
+
+
     render() {
         return (
             <div key="newcamp" className="col-sm-6">
@@ -39,7 +52,7 @@ export default class NewStudent extends Component{
                             <option>5</option>
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit"onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
                 </form>
 
 

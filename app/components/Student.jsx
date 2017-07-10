@@ -19,6 +19,9 @@ export default class Student extends Component{
         var styles = {
             cssFloat:'right'
         };
+        var stylesImg={
+            width:'65px'
+        };
 
         return (
             <div>
@@ -30,7 +33,7 @@ export default class Student extends Component{
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Photo</th>
+                            {/*<th>Photo</th>*/}
                             <th>Student Name</th>
                             <th>Campus</th>
                             <th>Email</th>
@@ -54,9 +57,9 @@ export default class Student extends Component{
                                 return (
                                     <tr key={students.id}>
                                         <td>{ students.id }</td>
-                                        <td><Link to={`/students/${students.id}`}><img src={students.image} /></Link></td>
+                                        {/*<td><Link to={`/students/${students.id}`}><img src={students.image} style={stylesImg} /></Link></td>*/}
                                         <td><Link to={`/students/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link></td>
-                                        <td>{ students.campusId }</td>
+                                        <td><Link to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link></td>
                                         <td>{ students.email }</td>
                                         <td>{`@${students.firstName}`}</td>
                                         <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>

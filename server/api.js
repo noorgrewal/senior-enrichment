@@ -21,13 +21,16 @@ api.get('/users', (req, res, next) => {
 
 // STUDENTS
 api.get('/students', (req, res, next) => {
-    Students.findAll({})
-    .then(students => res.json(students))
+    // Students.findAll({})
+    // .then(students => res.json(students))
+    // .catch(next);
+
+    Students.findAll({ include: [ Campuses ], order: '"firstName" ASC' })
+    .then(function(students) {
+        // console.log(JSON.stringify(students));
+        res.json(students);
+    })
     .catch(next);
-
-    // Company.findAll({
-    //     include: [ { model: Campuses, as: 'Campus' } ]
-
 
 });
 
@@ -35,8 +38,9 @@ api.get('/students/:studentId', (req, res, next) => {
     var studentId=req.params.studentId;
     if(!Number(studentId)){res.sendStatus(500);}
     else{
-        Students.findById(studentId)
+        Students.findAll({where:{id:studentId},include: [ Campuses ]})
         .then(function (data) {
+            // console.log(data);
             if(data){res.json(data);}
             else{
                 res.sendStatus(404);
@@ -45,7 +49,7 @@ api.get('/students/:studentId', (req, res, next) => {
     }
 });
 
-api.post('/students', (req, res, next) => {
+api.post('/students/new', (req, res, next) => {
     Students.create({title:'blah'})
     .then(function (data) {
         res.status(201);
@@ -99,8 +103,6 @@ api.delete('/students/:studentId', (req, res, next) => {
 
 
 
-
-
 // CAMPUS
 api.get('/campuses', (req, res, next) => {
     Campuses.findAll({})
@@ -126,7 +128,7 @@ api.get('/campuses/:campusId/students', (req, res, next) => {
     var campusId=req.params.campusId;
     if(!Number(campusId)){res.sendStatus(500);}
     else{
-        Students.findAll({where:{campusId:campusId}})
+        Students.findAll({where:{campusId:campusId},include: [ Campuses ], order: '"firstName" ASC'})
         .then(function (data) {
             if(data){res.json(data);}
             else{
@@ -134,6 +136,7 @@ api.get('/campuses/:campusId/students', (req, res, next) => {
             }
         });
     }
+
 });
 
 // how do i do these routes under /api

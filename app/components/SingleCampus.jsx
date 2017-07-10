@@ -43,6 +43,9 @@ export default class SingleCampus extends Component{
         var styles = {
             cssFloat:'right'
         };
+        var stylesImg={
+            width:'65px'
+        };
 
         return (
             <div key={ campus.id }>
@@ -50,13 +53,16 @@ export default class SingleCampus extends Component{
                     <h1>Campus: { campus.name } <Link to="/campuses/new"><button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button></Link></h1>
                 </div>
                 <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-2">
                         <img src={ campus.image } />
                     </div>
 
-                    <div className="col-sm-2">
+                    <div className="col-sm-3">
                         <ul>
-                            <li>{ campus.name }</li>
+                            <li>{ campus.name } Fact #1</li>
+                            <li>{ campus.name } Fact #2</li>
+                            <li>{ campus.name } Fact #3</li>
+                            <li>{ campus.name } Fact #4</li>
                         </ul>
                     </div>
                 </div>
@@ -70,7 +76,7 @@ export default class SingleCampus extends Component{
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Photo</th>
+                                {/*<th>Photo</th>*/}
                                 <th>Student Name</th>
                                 <th>Campus</th>
                                 <th>Email</th>
@@ -84,9 +90,9 @@ export default class SingleCampus extends Component{
                                         return (
                                             <tr key={students.id}>
                                                 <td>{ students.id }</td>
-                                                <td><Link to={`/students/${students.id}`}><img src={students.image} /></Link></td>
+                                                {/*<td><Link to={`/students/${students.id}`}><img src={students.image} style={stylesImg} /></Link></td>*/}
                                                 <td><Link to={`/students/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link></td>
-                                                <td>{ students.campusId }</td>
+                                                <td><Link to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link></td>
                                                 <td>{ students.email }</td>
                                                 <td>{`@${students.firstName}`}</td>
                                                 <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>

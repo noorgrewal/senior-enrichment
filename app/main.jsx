@@ -38,22 +38,46 @@ render (
                                 <li className="active"><Link to="/">Home</Link></li>
                                 <li><Link to="/campuses">Campuses</Link></li>
                                 <li><Link to="/students">Students</Link></li>
-                                <li className="dropdown">
-                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-                                    <ul className="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" className="divider"></li>
-                                        <li className="dropdown-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                    </ul>
-                                </li>
+                                <li><Link to="/students">Video</Link></li>
+                                <li><Link to="/students">ReadMe</Link></li>
+                                <li><Link to="/jokes">Jokes</Link></li>
+                                {/*<li className="dropdown">*/}
+                                    {/*<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span className="caret"></span></a>*/}
+                                    {/*<ul className="dropdown-menu">*/}
+                                        {/*<li><a href="#">Video</a></li>*/}
+                                        {/*<li><a href="#">ReadMe</a></li>*/}
+                                        {/*<li><a href="#">Something else here</a></li>*/}
+                                        {/*<li role="separator" className="divider"></li>*/}
+                                        {/*<li className="dropdown-header">Nav header</li>*/}
+                                        {/*<li><a href="#">Separated link</a></li>*/}
+                                        {/*<li><a href="#">One more separated link</a></li>*/}
+                                    {/*</ul>*/}
+                                {/*</li>*/}
                             </ul>
                         </div>
                     </div>
                 </nav>
+
+
+                {/*<nav className="navbar navbar-inverse navbar-fixed-top">*/}
+                    {/*<div className="container-fluid">*/}
+                        {/*<div className="navbar-header">*/}
+                            {/*<a className="navbar-brand" href="#">WebSiteName</a>*/}
+                        {/*</div>*/}
+                        {/*<ul className="nav navbar-nav">*/}
+                            {/*<li className="active"><a href="#">Home</a></li>*/}
+                            {/*<li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span className="caret"></span></a>*/}
+                                {/*<ul className="dropdown-menu">*/}
+                                    {/*<li><a href="#">Page 1-1</a></li>*/}
+                                    {/*<li><a href="#">Page 1-2</a></li>*/}
+                                    {/*<li><a href="#">Page 1-3</a></li>*/}
+                                {/*</ul>*/}
+                            {/*</li>*/}
+                            {/*<li><a href="#">Page 2</a></li>*/}
+                            {/*<li><a href="#">Page 3</a></li>*/}
+                        {/*</ul>*/}
+                    {/*</div>*/}
+                {/*</nav>*/}
 
                 {/* BODY */}
                 <div className="container">
