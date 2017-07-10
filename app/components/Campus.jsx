@@ -16,11 +16,13 @@ export default class Campus extends Component{
 
     render() {
         const campuses = this.state.campuses;
-
+        var styles = {
+            cssFloat:'right'
+        };
         return (
             <div>
                 <h1>Campuses</h1>
-                <h2>List of All Campuses</h2>
+                <h2>List of All Campuses <Link to="/campuses/new"><button type="button" className="btn btn-info" style={styles}>+ Add Campus</button></Link></h2>
 
 
                 <table className="table table-striped">
@@ -40,7 +42,7 @@ export default class Campus extends Component{
                                     <td>{ campuses.id }</td>
                                     <td><Link to={`/campuses/${campuses.id}`}><img src={campuses.image} /></Link></td>
                                     <td><Link to={`/campuses/${campuses.id}`}>{ campuses.name }</Link></td>
-                                    <td>x</td>
+                                    <td><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
                                 </tr>
                             );
                         })

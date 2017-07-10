@@ -13,6 +13,9 @@ import Campus from './components/Campus';
 import SingleCampus from './components/SingleCampus';
 import SingleStudent from './components/SingleStudent';
 import SingleInstructor from './components/SingleInstructor';
+import NewCampus from './components/NewCampus';
+import NewStudent from './components/NewStudent';
+import NewInstructor from './components/NewInstructor';
 
 render (
     <Provider store={store}>
@@ -64,9 +67,12 @@ render (
                     <Route exact path="/students" component={Student} />
                     <Route exact path="/campuses" component={Campus} />
                     <Route exact path="/instructors" component={Instructor} />
-                    <Route path="/students/:studentId" component={SingleStudent} />
-                    <Route path="/campuses/:campusId" component={SingleCampus} />
-                    <Route path="/instructors/:instructorId" component={SingleInstructor} />
+                    <Route exact path="/students/new" component={NewStudent} />
+                    <Route exact path="/campuses/new" component={NewCampus} />
+                    <Route exact path="/instructors/new" component={NewInstructor} />
+                    <Route exact path="/students/:studentId" component={SingleStudent} />
+                    <Route exact path="/campuses/:campusId" component={SingleCampus} />
+                    <Route exact path="/instructors/:instructorId" component={SingleInstructor} />
                     <Route component={Root} />
                 </Switch>
                 </div>

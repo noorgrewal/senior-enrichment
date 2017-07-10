@@ -32,5 +32,13 @@ module.exports = db.define('student', {
 // INSERT INTO students VALUES (DEFAULT,'Alice','Chuang','alice@email.com','https://www.fillmurray.com/100/100',1,Now(),Now()),
 //     (DEFAULT,'Erica','Chuang','erica@email.com','https://www.fillmurray.com/100/100',1,Now(),Now()),
 //     (DEFAULT,'Monroe','Chuang','monroe@email.com','https://www.fillmurray.com/100/100',1,Now(),Now()),
+//     (DEFAULT,'Bill','Murray','bill@email.com','https://www.fillmurray.com/100/100',1,Now(),Now()),
+//     (DEFAULT,'Justin','Bieber','justin@email.com','https://www.fillmurray.com/100/100',1,Now(),Now()),
 //     (DEFAULT,'Blah','Lastname','blah@email.com','https://www.fillmurray.com/100/100',1,Now(),Now());
 
+// INSERT INTO campuses VALUES
+// (DEFAULT,'Terra', 'https://www.fillmurray.com/200/200',Now(),Now()),
+// (DEFAULT,'Titan', 'https://www.fillmurray.com/200/200',Now(),Now()),
+// (DEFAULT,'Moon1', 'https://www.fillmurray.com/200/200',Now(),Now()),
+// (DEFAULT,'Saturn', 'https://www.fillmurray.com/200/200',Now(),Now()),
+// (DEFAULT,'Blue Dward', 'https://www.fillmurray.com/200/200',Now(),Now());
