@@ -130,9 +130,9 @@ api.delete('/students/:studentId', (req, res, next) => {
             if (data) {
                 res.status(204);
                 data.destroy({force: true})
-                    .then(function (data) {
-                        res.send(data);
-                    });
+                .then(function (data) {
+                    res.send(data);
+                });
             }
             else {
                 res.sendStatus(404);
@@ -161,19 +161,24 @@ api.delete('/students/:studentId', (req, res, next) => {
 
 
 // CAMPUS
+
+// GET ALL
 api.get('/campuses', (req, res, next) => {
     Campuses.findAll({})
         .then(campuses => res.json(campuses))
         .catch(next);
 });
 
+// GET BY ID
 api.get('/campuses/:campusId', (req, res, next) => {
     var campusId=req.params.campusId;
     if(!Number(campusId)){res.sendStatus(500);}
     else{
         Campuses.findById(campusId)
         .then(function (data) {
-            if(data){res.json(data);}
+            if(data){
+                res.json(data);
+            }
             else{
                 res.sendStatus(404);
             }
@@ -181,6 +186,7 @@ api.get('/campuses/:campusId', (req, res, next) => {
     }
 });
 
+// GET STUDENTS IN CAMPUS
 api.get('/campuses/:campusId/students', (req, res, next) => {
     var campusId=req.params.campusId;
     if(!Number(campusId)){res.sendStatus(500);}
@@ -196,31 +202,55 @@ api.get('/campuses/:campusId/students', (req, res, next) => {
 
 });
 
+// ADD CAMPUS
 api.post('/campuses/new', (req, res, next) => {
     console.log('HELLO',req.body);
     var campusName=req.body.name;
     var campusImg=req.body.image;
     Campuses.create({name:campusName,image:campusImg})
-    .then(function (data) {
-        console.log("DATA",data);
-        res.status(201);
-        res.send(data);
-    })
-    .catch(next);
+        .then(function (data) {
+            console.log("DATA",data);
+            res.status(201);
+            res.send(data);
+        })
+        .catch(next);
 
     // Playlist.create(req.body)
     //     .then(playlist => res.status(201).json(playlist))
     //     .catch(next);
 });
 
+// EDIT CAMPUS
+api.put('/campuses/edit/:campusId', (req, res, next) => {
+    console.log('HELLO',req.body,req.params.campusId);
 
+    var campusId=req.params.campusId;
+    var campusName=req.body.name;
+    var campusImg=req.body.image;
+
+    if(!Number(campusId)){res.sendStatus(500);}
+    else{
+        Campuses.findById(campusId)
+            .then(function (data) {
+                if(data){
+                    data.update({
+                        name: campusName,
+                        image: campusImg
+                    }).then(function() {
+                        res.send(data);
+                    });
+                }
+                else{
+                    res.sendStatus(404);
+                }
+            });
+    }
+});
+
+
+// DELETE CAMPUS
 api.delete('/campuses/:campusId', (req, res, next) => {
     var campusId=req.params.campusId;
-
-    // if students are still attached to campus
-    // must re route first
-
-
 
     if(!Number(campusId)){res.sendStatus(500)}
     else {

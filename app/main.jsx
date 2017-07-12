@@ -68,6 +68,8 @@ render (
                     <Route exact path="/campuses" component={Campus} />
                     <Route exact path="/students/new" component={NewStudent} />
                     <Route exact path="/campuses/new" component={NewCampus} />
+                    <Route exact path="/students/edit/:studentId" component={NewStudent} />
+                    <Route exact path="/campuses/edit/:campusId" component={NewCampus} />
                     <Route exact path="/students/:studentId" component={SingleStudent} />
                     <Route exact path="/campuses/:campusId" component={SingleCampus} />
                     <Route path="/readme" component={ReadMe} />

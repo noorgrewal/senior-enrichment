@@ -4,7 +4,6 @@ import axios from 'axios';
 export default class NewStudent extends Component{
     constructor (){
         super();
-        this.state={formData:{}};
 
         this.handleSubmit=this.handleSubmit.bind(this);
     }

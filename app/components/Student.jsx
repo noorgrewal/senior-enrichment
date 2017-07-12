@@ -20,6 +20,21 @@ export default class Student extends Component{
         axios({
             method: 'delete',
             url: '/api/students/'+e.target.id
+        })
+        .then(res =>{
+            console.log('change state',res);
+            //cannot push to the same path must modify state
+            // this.props.history.push('/campuses');
+            // this.setState({ campuses });
+
+
+            // could not do another query on the server side
+            // please see api
+            axios.get('/api/students')
+                .then(res => res.data)
+                .then(students => this.setState({ students }));
+
+            // console.log("post delete state",this.state);
         });
 
     }
@@ -36,7 +51,7 @@ export default class Student extends Component{
         return (
             <div>
                 <h1>Students</h1>
-                <h2>List of All Students (34) <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h2>
+                <h2>List of All Students ({students.length}) <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h2>
 
 
                 <table className="table table-striped">
