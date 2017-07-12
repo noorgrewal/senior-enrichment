@@ -74,7 +74,7 @@ export default class SingleCampus extends Component{
                     <div className="row">
                         <div className="col-sm-12">
 
-                            <h3>All Students in { campus.name } Campus <Link to="/students/new">
+                            <h3>All Students in { campus.name } Campus (34) <Link to="/students/new">
                                 <button type="button" className="btn btn-primary" style={styles}>+ Add Student</button>
                             </Link></h3>
 

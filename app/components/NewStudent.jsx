@@ -31,6 +31,9 @@ export default class NewStudent extends Component{
                 image: studentImage,
                 campusId: studentCampus
             }
+        })
+        .then(res =>{
+            this.props.history.push('/students');
         });
     }
 

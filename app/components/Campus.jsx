@@ -21,19 +21,35 @@ export default class Campus extends Component{
         axios({
             method: 'delete',
             url: '/api/campuses/'+e.target.id
+        })
+        .then(res =>{
+            // console.log('change state',res);
+            //cannot push to the same path must modify state
+            // this.props.history.push('/campuses');
+            // this.setState({ campuses });
+
+
+            // could not do another query on the server side
+            // please see api
+            axios.get('/api/campuses')
+            .then(res => res.data)
+            .then(campuses => this.setState({ campuses }));
+
+            // console.log("post delete state",this.state);
         });
 
     }
 
     render() {
         const campuses = this.state.campuses;
+        console.log('',campuses);
         var styles = {
             cssFloat:'right'
         };
         return (
             <div>
                 <h1>Campuses</h1>
-                <h2>List of All Campuses <Link to="/campuses/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Campus</button></Link></h2>
+                <h2>List of All Campuses (10) <Link to="/campuses/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Campus</button></Link></h2>
 
 
                 <table className="table table-striped">

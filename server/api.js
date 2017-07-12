@@ -203,9 +203,8 @@ api.post('/campuses/new', (req, res, next) => {
     Campuses.create({name:campusName,image:campusImg})
     .then(function (data) {
         console.log("DATA",data);
-        res.sendStatus(201);
-        // res.send(data);
-        // res.redirect()
+        res.status(201);
+        res.send(data);
     })
     .catch(next);
 
@@ -233,6 +232,15 @@ api.delete('/campuses/:campusId', (req, res, next) => {
                 data.destroy({force: true})
                     .then(function (data) {
                         res.send(data);
+
+                        // re-query send back data of all campuses
+                        // doesn't work
+                        // Campuses.findAll({})
+                        // .then(campuses => {
+                        //     console.log("campuses========",campuses[0],"campuses========");
+                        //     res.send(campuses[0]);
+                        // })
+                        // .catch(next);
                     });
             }
             else {

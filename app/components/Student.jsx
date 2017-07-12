@@ -36,7 +36,7 @@ export default class Student extends Component{
         return (
             <div>
                 <h1>Students</h1>
-                <h2>List of All Students <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h2>
+                <h2>List of All Students (34) <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h2>
 
 
                 <table className="table table-striped">

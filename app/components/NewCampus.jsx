@@ -4,7 +4,8 @@ import axios from 'axios';
 export default class NewCampus extends Component{
     constructor(){
         super();
-        this.handleSubmit=this.handleSubmit.bind();
+
+        this.handleSubmit=this.handleSubmit.bind(this);
     }
 
     handleSubmit(e){
@@ -27,6 +28,10 @@ export default class NewCampus extends Component{
                 name: campusName,
                 image: campusImg
             }
+        })
+        .then(res =>{
+            console.log('do something',this.props.history.push('/#/campuses'));
+            this.props.history.push('/campuses');
         });
     }
 
