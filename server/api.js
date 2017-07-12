@@ -50,12 +50,52 @@ api.get('/students/:studentId', (req, res, next) => {
 });
 
 api.post('/students/new', (req, res, next) => {
-    Students.create({title:'blah'})
+    var studentFirst=req.body.firstName;
+    var studentLast=req.body.lastName;
+    var studentEmail=req.body.email;
+    var studentImage=req.body.image;
+    var studentCampus=Number(req.body.campusId);
+    console.log("TEST", req.body);
+
+    Students.create({
+        firstName: studentFirst,
+        lastName: studentLast,
+        email: studentEmail,
+        image: studentImage,
+        campusId: studentCampus
+    })
     .then(function (data) {
-        res.status(201);
-        res.send(data);
-    });
+        console.log("DATA",data);
+        res.sendStatus(201);
+        // res.send(data);
+        // res.redirect()
+    })
+    .catch(next);
+
+
+    // Campuses
+    // .findOrCreate({where: {id:studentCampus}})
+    // .spread(function(campus, created) {
+    //     console.log("ass",campus.get({
+    //         plain: true
+    //     }));
+    //     console.log(created);
+    //     Students.create({
+    //         firstName: studentFirst,
+    //         lastName: studentLast,
+    //         email: studentEmail,
+    //         image: studentImage,
+    //         campusId: campus.id
+    //     })
+    //     .then(function (data) {
+    //         console.log('no dice');
+    //         res.status(201);
+    //         res.send(data);
+    //     });
+    // });
+
 });
+
 
 api.put('/students/:studentId', (req, res, next) => {
     var studentId=req.params.studentId;
@@ -99,6 +139,23 @@ api.delete('/students/:studentId', (req, res, next) => {
             }
         });
     }
+
+    // Students.destroy({
+    //     where: {
+    //         id: e.target.id
+    //     }
+    // })
+    // .then(function (data) {
+    //     console.log("data",data);
+    //     if(data===0){res.sendStatus(404);}
+    //     else{
+    //         res.status(204);
+    //         res.send('done');
+    //     }
+    //
+    // })
+    // .catch(next);
+
 });
 
 
@@ -139,22 +196,50 @@ api.get('/campuses/:campusId/students', (req, res, next) => {
 
 });
 
-// how do i do these routes under /api
-// ive been using react routes to 'render' views, so no express routes
-// now I must do a post from a react route! how does that work with the paths?
-// do I make a traditional express route or leave it in here?
 api.post('/campuses/new', (req, res, next) => {
-    console.log(req.body);
-    // Campuses.create({title:'blah'})
-    //     .then(function (data) {
-    //         res.status(201);
-    //         res.send(data);
-    //         do a redirect
-    //     });
+    console.log('HELLO',req.body);
+    var campusName=req.body.name;
+    var campusImg=req.body.image;
+    Campuses.create({name:campusName,image:campusImg})
+    .then(function (data) {
+        console.log("DATA",data);
+        res.sendStatus(201);
+        // res.send(data);
+        // res.redirect()
+    })
+    .catch(next);
 
     // Playlist.create(req.body)
     //     .then(playlist => res.status(201).json(playlist))
     //     .catch(next);
+});
+
+
+api.delete('/campuses/:campusId', (req, res, next) => {
+    var campusId=req.params.campusId;
+
+    // if students are still attached to campus
+    // must re route first
+
+
+
+    if(!Number(campusId)){res.sendStatus(500)}
+    else {
+        Campuses.findById(campusId)
+        .then(function (data) {
+            // console.log(data);
+            if (data) {
+                res.status(204);
+                data.destroy({force: true})
+                    .then(function (data) {
+                        res.send(data);
+                    });
+            }
+            else {
+                res.sendStatus(404);
+            }
+        });
+    }
 });
 
 module.exports = api;

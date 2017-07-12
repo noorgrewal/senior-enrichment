@@ -47,70 +47,85 @@ export default class SingleCampus extends Component{
             width:'65px'
         };
 
-        return (
-            <div key={ campus.id }>
-                <div className="page-header">
-                    <h1>Campus: { campus.name } <Link to="/campuses/new"><button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button></Link></h1>
-                </div>
-                <div className="row">
-                    <div className="col-sm-2">
-                        <img src={ campus.image } />
+
+
+
+            return (
+                <div key={ campus.id }>
+                    <div className="page-header">
+                        <h1>Campus: { campus.name } <Link to="/campuses/new">
+                            <button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button>
+                        </Link></h1>
                     </div>
+                    <div className="row">
+                        <div className="col-sm-2">
+                            <img src={ campus.image }/>
+                        </div>
 
-                    <div className="col-sm-3">
-                        <ul>
-                            <li>{ campus.name } Fact #1</li>
-                            <li>{ campus.name } Fact #2</li>
-                            <li>{ campus.name } Fact #3</li>
-                            <li>{ campus.name } Fact #4</li>
-                        </ul>
+                        <div className="col-sm-3">
+                            <ul>
+                                <li>{ campus.name } Fact #1</li>
+                                <li>{ campus.name } Fact #2</li>
+                                <li>{ campus.name } Fact #3</li>
+                                <li>{ campus.name } Fact #4</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-12">
+                    <div className="row">
+                        <div className="col-sm-12">
 
-                        <h3>All Students in { campus.name } Campus <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h3>
+                            <h3>All Students in { campus.name } Campus <Link to="/students/new">
+                                <button type="button" className="btn btn-primary" style={styles}>+ Add Student</button>
+                            </Link></h3>
 
 
-                        <table className="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                {/*<th>Photo</th>*/}
-                                <th>Student Name</th>
-                                <th>Campus</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                            <table className="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    {/*<th>Photo</th>*/}
+                                    <th>Student Name</th>
+                                    <th>Campus</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 {
                                     students.map(students => {
+
                                         return (
                                             <tr key={students.id}>
                                                 <td>{ students.id }</td>
                                                 {/*<td><Link to={`/students/${students.id}`}><img src={students.image} style={stylesImg} /></Link></td>*/}
-                                                <td><Link to={`/students/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link></td>
-                                                <td><Link to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link></td>
+                                                <td><Link
+                                                    to={`/students/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link>
+                                                </td>
+                                                <td><Link
+                                                    to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link>
+                                                </td>
                                                 <td>{ students.email }</td>
                                                 <td>{`@${students.firstName}`}</td>
-                                                <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                                <td className="text-right"><Link to="something">
+                                                    <button type="button" className="btn btn-sm btn-danger">delete
+                                                    </button>
+                                                </Link></td>
                                             </tr>
                                         );
                                     })
+
                                 }
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
 
-
-
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        )
-    }
+            )
+        }
+
 
 }

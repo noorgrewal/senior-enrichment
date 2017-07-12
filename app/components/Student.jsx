@@ -6,12 +6,22 @@ export default class Student extends Component{
     constructor(){
         super();
         this.state={students:[]};
+        this.handleClick=this.handleClick.bind(this);
     }
 
     componentDidMount () {
         axios.get('/api/students')
         .then(res => res.data)
         .then(students => this.setState({ students }));
+    }
+
+    handleClick(e){
+        console.log("clickTarg",e.target.id);
+        axios({
+            method: 'delete',
+            url: '/api/students/'+e.target.id
+        });
+
     }
 
     render() {
@@ -62,7 +72,7 @@ export default class Student extends Component{
                                         <td><Link to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link></td>
                                         <td>{ students.email }</td>
                                         <td>{`@${students.firstName}`}</td>
-                                        <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                        <td className="text-right"><button type="button" onClick={this.handleClick} id={students.id} className="btn btn-sm btn-danger" >delete</button></td>
                                     </tr>
                                 );
                             })

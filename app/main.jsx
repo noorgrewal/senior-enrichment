@@ -13,6 +13,8 @@ import SingleCampus from './components/SingleCampus';
 import SingleStudent from './components/SingleStudent';
 import NewCampus from './components/NewCampus';
 import NewStudent from './components/NewStudent';
+import ReadMe from './components/ReadMe';
+import Video from './components/Video';
 
 render (
     <Provider store={store}>
@@ -38,8 +40,8 @@ render (
                                 <li className="active"><Link to="/">Home</Link></li>
                                 <li><Link to="/campuses">Campuses</Link></li>
                                 <li><Link to="/students">Students</Link></li>
-                                <li><Link to="/students">Video</Link></li>
-                                <li><Link to="/students">ReadMe</Link></li>
+                                <li><Link to="/video">Video</Link></li>
+                                <li><Link to="/readme">ReadMe</Link></li>
                                 <li><Link to="/jokes">Jokes</Link></li>
                                 {/*<li className="dropdown">*/}
                                     {/*<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span className="caret"></span></a>*/}
@@ -90,13 +92,11 @@ render (
                     <Route exact path="/campuses/new" component={NewCampus} />
                     <Route exact path="/students/:studentId" component={SingleStudent} />
                     <Route exact path="/campuses/:campusId" component={SingleCampus} />
+                    <Route path="/readme" component={ReadMe} />
+                    <Route path="/video" component={Video} />
                     <Route component={Root} />
                 </Switch>
                 </div>
-
-
-
-
 
             </div>
         </Router>

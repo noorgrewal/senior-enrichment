@@ -6,12 +6,23 @@ export default class Campus extends Component{
     constructor(){
         super();
         this.state={campuses:[]};
+
+        this.handleClick=this.handleClick.bind(this);
     }
 
     componentDidMount () {
         axios.get('/api/campuses')
-            .then(res => res.data)
-            .then(campuses => this.setState({ campuses }));
+        .then(res => res.data)
+        .then(campuses => this.setState({ campuses }));
+    }
+
+    handleClick(e){
+        console.log("clickTarg",e.target.id);
+        axios({
+            method: 'delete',
+            url: '/api/campuses/'+e.target.id
+        });
+
     }
 
     render() {
@@ -42,7 +53,7 @@ export default class Campus extends Component{
                                     <td>{ campuses.id }</td>
                                     {/*<td><Link to={`/campuses/${campuses.id}`}><img src={campuses.image} /></Link></td>*/}
                                     <td><Link to={`/campuses/${campuses.id}`}>{ campuses.name }</Link></td>
-                                    <td className="text-right"><Link to="something"><button type="button" className="btn btn-sm btn-danger">delete</button></Link></td>
+                                    <td className="text-right"><button type="button" className="btn btn-sm btn-danger" onClick={this.handleClick} id={campuses.id}>delete</button></td>
                                 </tr>
                             );
                         })
