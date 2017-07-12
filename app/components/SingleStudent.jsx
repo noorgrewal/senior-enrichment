@@ -37,7 +37,7 @@ export default class SingleStudent extends Component{
                         return (
                             <div key={ student.id }>
                                 <div className="page-header">
-                                    <h1>Student: { `${student.firstName} ${student.lastName}`} <Link to="/students/new"><button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button></Link></h1>
+                                    <h1>Student: { `${student.firstName} ${student.lastName}`} <Link to={`/students/edit/${student.id}`}><button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button></Link></h1>
                                 </div>
 
                                 <div className="row">
