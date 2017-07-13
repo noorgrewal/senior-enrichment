@@ -47,7 +47,7 @@ export default class SingleCampus extends Component{
 
         return (
 
-            <div key={ campus.id }  className="col-md-8">
+            <div key={ campus.id }  className="col-md-9">
                 <div className="page-header">
                     <h1>Campus: { campus.name } <Link to={`/campuses/edit/${campus.id}`}>
                         <button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button>
@@ -95,14 +95,14 @@ export default class SingleCampus extends Component{
                                             <td>{ students.id }</td>
                                             {/*<td><Link to={`/students/${students.id}`}><img src={students.image} style={stylesImg} /></Link></td>*/}
                                             <td><Link
-                                                to={`/students/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link>
+                                                to={`/students/view/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link>
                                             </td>
                                             <td><Link
-                                                to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link>
+                                                to={`/campuses/view/${students.campus.id}`}>{ students.campus.name }</Link>
                                             </td>
                                             <td>{ students.email }</td>
                                             <td>{`@${students.firstName}`}</td>
-                                            <td className="text-right"><button type="button" onClick={this.handleClick} id={students.id} className="btn btn-sm btn-danger">delete</button></td>
+                                            <td className="text-right"><button type="button" onClick={this.handleClick} id={students.id} className="btn btn-xs btn-danger">delete</button></td>
                                         </tr>
                                     );
                                 })

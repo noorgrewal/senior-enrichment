@@ -62,7 +62,7 @@ export default class NewCampus extends Component{
                 }
             })
             .then(res =>{
-                this.props.history.push('/campuses/'+campusId);
+                this.props.history.push('/campuses/view/'+campusId);
             });
         }
 

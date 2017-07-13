@@ -7,8 +7,8 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import store from './store';
 import Root from './components/Root';
 import Home from './components/Home';
-import Student from './components/Student';
-import Campus from './components/Campus';
+import Student from './components/StudentGrid';
+import Campus from './components/CampusGrid';
 import SingleCampus from './components/SingleCampus';
 import SingleStudent from './components/SingleStudent';
 import NewCampus from './components/NewCampus';
@@ -69,8 +69,8 @@ render (
                     <Route exact path="/campuses/new" component={NewCampus} />
                     <Route exact path="/students/edit/:studentId" component={NewStudent} />
                     <Route exact path="/campuses/edit/:campusId" component={NewCampus} />
-                    <Route exact path="/students/:studentId" component={SingleStudent} />
-                    <Route exact path="/campuses/:campusId" component={SingleCampus} />
+                    <Route exact path="/students/view/:studentId" component={SingleStudent} />
+                    <Route exact path="/campuses/view/:campusId" component={SingleCampus} />
                     <Route path="/readme" component={ReadMe} />
                     <Route path="/video" component={Video} />
                     <Route component={Root} />

@@ -94,7 +94,7 @@ export default class NewStudent extends Component{
                 }
             })
             .then(res =>{
-                this.props.history.push('/students/'+studentId);
+                this.props.history.push('/students/view/'+studentId);
             });
         }
     }
@@ -109,7 +109,7 @@ export default class NewStudent extends Component{
         var campuses=this.state.campuses;
         return (
 
-            <div key="newcamp" className="col-md-7">
+            <div key="newcamp" className="col-md-6">
                 <h1>Students</h1>
                 {
                     this.formNew ?  (<h2>Add New Student</h2>) : (<h2>Edit Student</h2>)

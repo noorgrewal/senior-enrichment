@@ -48,7 +48,6 @@ export default class Student extends Component{
                 <h2>List of All Students ({students.length})
                     <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link>
                 </h2>
-
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -68,11 +67,11 @@ export default class Student extends Component{
                                     <tr key={students.id}>
                                         <td>{ students.id }</td>
                                         {/*<td><Link to={`/students/${students.id}`}><img src={students.image} style={stylesImg} /></Link></td>*/}
-                                        <td><Link to={`/students/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link></td>
-                                        <td><Link to={`/campuses/${students.campus.id}`}>{ students.campus.name }</Link></td>
+                                        <td><Link to={`/students/view/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link></td>
+                                        <td><Link to={`/campuses/view/${students.campus.id}`}>{ students.campus.name }</Link></td>
                                         <td>{ students.email }</td>
                                         <td>{`@${students.firstName}`}</td>
-                                        <td className="text-right"><button type="button" onClick={this.handleClick} id={students.id} className="btn btn-sm btn-danger" >delete</button></td>
+                                        <td className="text-right"><button type="button" onClick={this.handleClick} id={students.id} className="btn btn-xs btn-danger" >delete</button></td>
                                     </tr>
                                 );
                             })
