@@ -31,28 +31,23 @@ export default class Student extends Component{
             // could not do another query on the server side
             // please see api
             axios.get('/api/students')
-                .then(res => res.data)
-                .then(students => this.setState({ students }));
-
-            // console.log("post delete state",this.state);
+            .then(res => res.data)
+            .then(students => this.setState({ students }));
         });
-
     }
 
     render() {
-        const students = this.state.students;
-        var styles = {
-            cssFloat:'right'
-        };
-        var stylesImg={
-            width:'65px'
-        };
+        var students = this.state.students;
+        var styles = { cssFloat:'right' };
+        var stylesImg={ width:'65px' };
 
         return (
-            <div>
-                <h1>Students</h1>
-                <h2>List of All Students ({students.length}) <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link></h2>
 
+            <div className="col-md-7">
+                <h1>Students</h1>
+                <h2>List of All Students ({students.length})
+                    <Link to="/students/new"><button type="button" className="btn btn-primary" style={styles}>+ Add Student</button></Link>
+                </h2>
 
                 <table className="table table-striped">
                     <thead>
@@ -67,16 +62,6 @@ export default class Student extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {/*<tr>*/}
-                            {/*<td>1</td>*/}
-                            {/*<td>Mark</td>*/}
-                            {/*<td>Otto</td>*/}
-                            {/*<td>@mdo</td>*/}
-                            {/*<td>@mdo</td>*/}
-                            {/*<td>something</td>*/}
-                            {/*<td>x</td>*/}
-                        {/*</tr>*/}
-
                         {
                             students.map(students => {
                                 return (
@@ -94,10 +79,8 @@ export default class Student extends Component{
                         }
                     </tbody>
                 </table>
-
-
-
             </div>
+
         )
     }
 }

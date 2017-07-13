@@ -10,3 +10,7 @@ body{
     margin-left: 0;
     border-width: .2rem;
 }
+
+.col-md-7,.col-md-8{
+    padding-left: 0px !important;
+}

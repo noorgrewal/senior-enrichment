@@ -12,17 +12,14 @@ export default class SingleCampus extends Component{
         this.handleClick=this.handleClick.bind(this);
     }
 
-
     componentDidMount () {
-        const campusId = this.props.match.params.campusId;
+        var campusId = this.props.match.params.campusId;
 
         axios.all([
             axios.get(`/api/campuses/${campusId}`),
             axios.get(`/api/campuses/${campusId}/students`)
         ])
         .then(axios.spread((campus, students) => {
-            console.log('campus', campus.data);
-            console.log('student', students.data);
             campus=campus.data;
             students=students.data;
             this.setState({ campus, students  });
@@ -42,31 +39,26 @@ export default class SingleCampus extends Component{
 
     }
 
-
     render() {
-        const campus=this.state.campus;
-        const students=this.state.students;
-        var styles = {
-            cssFloat:'right'
-        };
-        var stylesImg={
-            width:'65px'
-        };
-
+        var campus=this.state.campus;
+        var students=this.state.students;
+        var styles = { cssFloat:'right' };
+        var stylesImg={ width:'65px' };
 
         return (
-            <div key={ campus.id }>
+
+            <div key={ campus.id }  className="col-md-8">
                 <div className="page-header">
                     <h1>Campus: { campus.name } <Link to={`/campuses/edit/${campus.id}`}>
                         <button type="button" className="btn btn-lg btn-primary" style={styles}>Edit</button>
                     </Link></h1>
                 </div>
                 <div className="row">
-                    <div className="col-sm-2">
+                    <div className="col-md-4">
                         <img src={ campus.image }/>
                     </div>
 
-                    <div className="col-sm-3">
+                    <div className="col-md-4">
                         <ul>
                             <li>{ campus.name } Fact #1</li>
                             <li>{ campus.name } Fact #2</li>
@@ -76,12 +68,12 @@ export default class SingleCampus extends Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-12">
-
-                        <h3>All Students in { campus.name } Campus ({students.length}) <Link to="/students/new">
-                            <button type="button" className="btn btn-primary" style={styles}>+ Add Student</button>
-                        </Link></h3>
-
+                    <div className="col-md-12">
+                        <div className="page-header">
+                            <h2>All Students in { campus.name } Campus ({students.length}) <Link to="/students/new">
+                                <button type="button" className="btn btn-primary" style={styles}>+ Add Student</button>
+                            </Link></h2>
+                        </div>
 
                         <table className="table table-striped">
                             <thead>
@@ -98,7 +90,6 @@ export default class SingleCampus extends Component{
                             <tbody>
                             {
                                 students.map(students => {
-
                                     return (
                                         <tr key={students.id}>
                                             <td>{ students.id }</td>
@@ -115,20 +106,14 @@ export default class SingleCampus extends Component{
                                         </tr>
                                     );
                                 })
-
                             }
                             </tbody>
                         </table>
-
 
                     </div>
                 </div>
             </div>
 
         )
-
-
-
-
     }
 }

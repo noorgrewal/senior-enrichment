@@ -8,7 +8,8 @@ export default class Home extends Component{
             <div>
                 <h1>Welcome to the <span style={{color: 'olive'}}>Margaret Hamilton<br />
                     Interplanetary Academy <br />
-                    for Javascript</span></h1>
+                    for Javascript</span>
+                </h1>
                 <h2><Link to="/students">Students</Link> / <Link to="/campuses">Campuses</Link></h2>
             </div>
         )

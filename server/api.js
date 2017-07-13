@@ -66,7 +66,6 @@ api.post('/students/new', (req, res, next) => {
 
 });
 
-
 api.put('/students/edit/:studentId', (req, res, next) => {
     var studentId=req.params.studentId;
     var studentFirst=req.body.firstName;
@@ -141,9 +140,15 @@ api.delete('/students/:studentId', (req, res, next) => {
 // CAMPUS
 // GET ALL
 api.get('/campuses', (req, res, next) => {
-    Campuses.findAll({})
-        .then(campuses => res.json(campuses))
-        .catch(next);
+    Campuses.findAll({ include: [ Students ], order: '"name" ASC' })
+    .then(campuses=>{
+        res.json(campuses);
+    })
+    .catch(next);
+
+    // Campuses.findAll({ order: '"name" ASC'})
+    //     .then(campuses => res.json(campuses))
+    //     .catch(next);
 });
 
 // GET BY ID
@@ -225,7 +230,6 @@ api.put('/campuses/edit/:campusId', (req, res, next) => {
     }
 
 });
-
 
 // DELETE CAMPUS
 api.delete('/campuses/:campusId', (req, res, next) => {

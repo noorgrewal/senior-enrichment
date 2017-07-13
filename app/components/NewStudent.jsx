@@ -4,7 +4,10 @@ import axios from 'axios';
 export default class NewStudent extends Component{
     constructor (props){
         super(props);
-        this.state={student:{}};
+        this.state={
+            campuses:[],
+            student:{}
+        };
 
         let formPath=this.props.history.location.pathname;
         this.formNew=(formPath==="/students/new");
@@ -15,12 +18,29 @@ export default class NewStudent extends Component{
     componentDidMount(){
         // if edit state, get student data
         if(!this.formNew){
-            const studentId = this.props.match.params.studentId;
-            axios.get(`/api/students/${studentId}`)
+            var studentId = this.props.match.params.studentId;
+
+            // axios.get(`/api/students/${studentId}`)
+            // .then(res => res.data)
+            // .then(student => {
+            //     this.setState({ student: student[0] });
+            // });
+
+            axios.all([
+                axios.get('/api/campuses'),
+                axios.get(`/api/students/${studentId}`)
+            ])
+            .then(axios.spread((campuses, student) => {
+                campuses=campuses.data;
+                student=student.data[0];
+                this.setState({ campuses, student  });
+            }));
+
+        }
+        else{
+            axios.get('/api/campuses')
             .then(res => res.data)
-            .then(student => {
-                this.setState({ student: student[0] });
-            });
+            .then(campuses => this.setState({ campuses: campuses }));
         }
     }
 
@@ -32,7 +52,7 @@ export default class NewStudent extends Component{
         let studentLast=formObj[1].value;
         let studentEmail=formObj[2].value;
         let studentImage=formObj[3].value;
-        let studentCampus=formObj[5].value;
+        let studentCampus=formObj[4].value;
 
         // creating new student
         if(this.formNew) {
@@ -79,7 +99,6 @@ export default class NewStudent extends Component{
         }
     }
 
-
     render() {
         var student=this.state.student;
         var studentFirst=(this.formNew) ? 'First Name' : student.firstName;
@@ -87,10 +106,10 @@ export default class NewStudent extends Component{
         var studentEmail=(this.formNew) ? 'name@email.com' : student.email;
         var studentImage=(this.formNew) ? 'https://www.fillmurray.com/200/200' : student.image;
         var studentCampus=(this.formNew) ? 'Last Name' : student.campusId;
-
+        var campuses=this.state.campuses;
         return (
-            <div key="newcamp" className="col-sm-6">
 
+            <div key="newcamp" className="col-md-7">
                 <h1>Students</h1>
                 {
                     this.formNew ?  (<h2>Add New Student</h2>) : (<h2>Edit Student</h2>)
@@ -122,30 +141,35 @@ export default class NewStudent extends Component{
                     <div className="form-group">
                         <label for="studentImage">Image</label>
                         <input type="text" className="form-control" id="studentImage"
-                               defaultValue={this.formNew ?  ('https://www.fillmurray.com/200/200') : (studentImage)}
-                               placeholder={this.formNew ?  ('https://www.fillmurray.com/200/200') : (studentImage)}
+                               defaultValue={this.formNew ?  ('http://lorempixel.com/200/200/nature/') : (studentImage)}
+                               placeholder={this.formNew ?  ('http://lorempixel.com/200/200/nature/') : (studentImage)}
                         />
                     </div>
-                    <div className="form-group">        
-                        <label for="studentUsername">Username</label>
-                        <input type="text" className="form-control" id="studentUsername"
-                               defaultValue="@NAME" placeholder="Enter username"
-                        />
-                    </div>
+                    {/*<div className="form-group">        */}
+                        {/*<label for="studentUsername">Username</label>*/}
+                        {/*<input type="text" className="form-control" id="studentUsername"*/}
+                               {/*defaultValue="@NAME" placeholder="Enter username"*/}
+                        {/*/>*/}
+                    {/*</div>*/}
                     <div className="form-group">
                         <label for="exampleSelect1">Campus</label>
                         <select className="form-control" id="exampleSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            {
+                                campuses.map(campuses => {
+                                    return (
+                                        campuses.id===studentCampus ?
+                                        (<option key={campuses.id} value={campuses.id} selected>{campuses.name}</option>)
+                                        :
+                                        (<option key={campuses.id} value={campuses.id}>{campuses.name}</option>)
+                                    );
+                                })
+                            }
                         </select>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
-
             </div>
+
         )
     }
 }

@@ -15,7 +15,7 @@ export default class NewCampus extends Component{
     componentDidMount(){
         // if edit state, get campus data
         if(!this.formNew){
-            const campusId = this.props.match.params.campusId;
+            var campusId = this.props.match.params.campusId;
             axios.get(`/api/campuses/${campusId}`)
             .then(res => res.data)
             .then(campus => {
@@ -72,11 +72,10 @@ export default class NewCampus extends Component{
         var campus=this.state.campus;
         var campusName=(this.formNew) ? 'Enter Name' : campus.name;
         var campusImage=(this.formNew) ? 'Enter Image Url' : campus.image;
-        console.log(campus);
 
         return (
-            <div className="col-sm-6">
 
+            <div className="col-md-6">
                 <h1>Campuses</h1>
                 {
                     this.formNew ?  (<h2>Add New Campus</h2>) : (<h2>Edit Campus</h2>)
@@ -96,15 +95,15 @@ export default class NewCampus extends Component{
                         <label for="campusImage">Image</label>
 
                         <input type="text" className="form-control" id="campusImage"
-                               defaultValue={this.formNew ?  ('Enter Campus Image Url') : campusImage}
-                               placeholder={this.formNew ?  ('Enter Campus Image Url') : campusImage}
+                               defaultValue={this.formNew ?  ('http://lorempixel.com/200/200/abstract/') : campusImage}
+                               placeholder={this.formNew ?  ('http://lorempixel.com/200/200/abstract/') : campusImage}
                         />
 
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
-
             </div>
+
         )
     }
 }

@@ -8,11 +8,8 @@ export default class SingleStudent extends Component{
         this.state={student:[]};
     }
 
-
-
-
     componentDidMount () {
-        const studentId = this.props.match.params.studentId;
+        var studentId = this.props.match.params.studentId;
         axios.get(`/api/students/${studentId}`)
         .then(res => res.data)
         .then(student => {
@@ -20,18 +17,12 @@ export default class SingleStudent extends Component{
         });
     }
 
-
-
     render() {
-        const student=this.state.student;
-
-        var styles = {
-            cssFloat:'right'
-        };
+        var student=this.state.student;
+        var styles = { cssFloat:'right' };
 
         return (
-            <div>
-
+            <div className="col-md-7">
                 {
                     student.map(student => {
                         return (
@@ -41,11 +32,11 @@ export default class SingleStudent extends Component{
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-sm-2">
+                                    <div className="col-md-4">
                                         <img src={ student.image } />
                                     </div>
 
-                                    <div className="col-sm-3">
+                                    <div className="col-md-4">
                                         <ul>
                                             <li>{ `${student.firstName} ${student.lastName}`}</li>
                                             <li>{ student.email }</li>
@@ -58,9 +49,7 @@ export default class SingleStudent extends Component{
                     })
                 }
             </div>
-
         )
-
     }
 
 }

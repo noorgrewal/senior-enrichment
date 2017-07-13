@@ -19,7 +19,7 @@ import Video from './components/Video';
 render (
     <Provider store={store}>
         <Router>
-            <div>
+            <div className="container">
 
                 {/* NAV BAR */}
                 <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -31,16 +31,16 @@ render (
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <a className="navbar-brand" href="#">Margaret Hamilton Academy</a>
+                            <a className="navbar-brand" href="#">✨ Margaret Hamilton Academy</a>
                         </div>
                         <div id="navbar" className="navbar-collapse collapse">
                             <ul className="nav navbar-nav">
-                                <li className="active"><Link to="/">Home</Link></li>
+                                <li><Link to="/">Home</Link></li>
                                 <li><Link to="/campuses">Campuses</Link></li>
                                 <li><Link to="/students">Students</Link></li>
                                 <li><Link to="/video">Video</Link></li>
                                 <li><Link to="/readme">ReadMe</Link></li>
-                                <li><Link to="/jokes">Jokes</Link></li>
+                                {/*<li><Link to="/jokes">Jokes</Link></li>*/}
                                 {/*<li className="dropdown">*/}
                                     {/*<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span className="caret"></span></a>*/}
                                     {/*<ul className="dropdown-menu">*/}
@@ -60,7 +60,6 @@ render (
 
 
                 {/* BODY */}
-                <div className="container">
                 <Switch>
                     {/*<Route path="/new-playlist" render={() => <NewPlaylist addPlaylist={this.addPlaylist}/>} />*/}
                     <Route exact path="/" component={Home} />
@@ -76,7 +75,6 @@ render (
                     <Route path="/video" component={Video} />
                     <Route component={Root} />
                 </Switch>
-                </div>
 
             </div>
         </Router>
