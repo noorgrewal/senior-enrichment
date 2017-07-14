@@ -51,7 +51,8 @@ export default class Campus extends Component {
                 return (
                     <tr key={campuses.id}>
                       <td>
-                        <Link to={`/campuses/view/${campuses.id}`}>{ campuses.name }</Link>
+                        <Link
+                            to={`/campuses/view/${campuses.id}`}>{ campuses.name }</Link>
                       </td>
                       <td>{campuses.students.length}</td>
                       <td className="text-right">
@@ -68,3 +69,5 @@ export default class Campus extends Component {
     );
   }
 }
+
+
