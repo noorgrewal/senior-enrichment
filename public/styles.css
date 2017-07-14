@@ -3,10 +3,41 @@ body{
 
 }
 
-.bd-example {
-    padding: 1.5rem;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    border-width: .2rem;
+.navbar-brand {
+    color: crimson;
 }
+
+.add {
+    float: right;
+}
+
+.edit {
+    float: right;
+}
+
+.campusImage {
+    width: 8%;
+    margin-right: 1%;
+}
+
+.mainImage {
+    width: 20%;
+    display: block;
+    margin: auto;
+}
+
+.navbar {
+    background-color: lightcoral;
+    padding-left: 25%;
+}
+
+.navbar-nav > li > a {
+    color: white;
+}
+
+.single-page-image {
+    width: 25%
+}
+
+
+

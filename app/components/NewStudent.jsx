@@ -16,16 +16,8 @@ export default class NewStudent extends Component{
     }
 
     componentDidMount(){
-        // if edit state, get student data
         if(!this.formNew){
             var studentId = this.props.match.params.studentId;
-
-            // axios.get(`/api/students/${studentId}`)
-            // .then(res => res.data)
-            // .then(student => {
-            //     this.setState({ student: student[0] });
-            // });
-
             axios.all([
                 axios.get('/api/campuses'),
                 axios.get(`/api/students/${studentId}`)
@@ -48,8 +40,8 @@ export default class NewStudent extends Component{
         e.preventDefault();
 
         let formObj=e.target;
-        let studentFirst=formObj[0].value;
-        let studentLast=formObj[1].value;
+        let firstName=formObj[0].value;
+        let lastName=formObj[1].value;
         let studentEmail=formObj[2].value;
         let studentImage=formObj[3].value;
         let studentCampus=formObj[4].value;
@@ -60,8 +52,8 @@ export default class NewStudent extends Component{
                 method: 'post',
                 url: '/api/students/new',
                 data: {
-                    firstName: studentFirst,
-                    lastName: studentLast,
+                    firstName: firstName,
+                    lastName: lastName,
                     email: studentEmail,
                     image: studentImage,
                     campusId: studentCampus
@@ -76,8 +68,8 @@ export default class NewStudent extends Component{
             let studentId=this.state.student.id;
 
             // handle for blanks
-            studentFirst=(studentFirst==='')?this.state.student.firstName:studentFirst;
-            studentLast=(studentLast==='')?this.state.student.lastName:studentLast;
+            firstName=(firstName==='')?this.state.student.firstName:firstName;
+            lastName=(lastName==='')?this.state.student.lastName:lastName;
             studentEmail=(studentEmail==='')?this.state.student.email:studentEmail;
             studentImage=(studentImage==='')?this.state.student.image:studentImage;
             studentCampus=(studentCampus==='')?this.state.student.campusId:studentCampus;
@@ -86,8 +78,8 @@ export default class NewStudent extends Component{
                 method: 'put',
                 url: '/api/students/edit/'+studentId,
                 data: {
-                    firstName: studentFirst,
-                    lastName: studentLast,
+                    firstName: firstName,
+                    lastName: lastName,
                     email: studentEmail,
                     image: studentImage,
                     campusId: studentCampus
@@ -101,8 +93,8 @@ export default class NewStudent extends Component{
 
     render() {
         var student=this.state.student;
-        var studentFirst=(this.formNew) ? 'First Name' : student.firstName;
-        var studentLast=(this.formNew) ? 'Last Name' : student.lastName;
+        var firstName=(this.formNew) ? 'First Name' : student.firstName;
+        var lastName=(this.formNew) ? 'Last Name' : student.lastName;
         var studentEmail=(this.formNew) ? 'name@email.com' : student.email;
         var studentImage=(this.formNew) ? 'https://www.fillmurray.com/200/200' : student.image;
         var studentCampus=(this.formNew) ? 'Last Name' : student.campusId;
@@ -117,17 +109,17 @@ export default class NewStudent extends Component{
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label for="studentFirst">First Name</label>
-                        <input type="text" className="form-control" id="studentFirst"
-                               defaultValue={this.formNew ?  ('First Name') : (studentFirst)}
-                               placeholder={this.formNew ?  ('First Name') : (studentFirst)}
+                        <label for="firstName">First Name</label>
+                        <input type="text" className="form-control" id="firstName"
+                               defaultValue={this.formNew ?  ('First Name') : (firstName)}
+                               placeholder={this.formNew ?  ('First Name') : (firstName)}
                         />
                     </div>
                     <div className="form-group">
-                        <label for="studentLast">Last Name</label>
-                        <input type="text" className="form-control" id="studentLast"
-                               defaultValue={this.formNew ?  ('Last Name') : (studentLast)}
-                               placeholder={this.formNew ?  ('Last Name') : (studentLast)}
+                        <label for="lastName">Last Name</label>
+                        <input type="text" className="form-control" id="lastName"
+                               defaultValue={this.formNew ?  ('Last Name') : (lastName)}
+                               placeholder={this.formNew ?  ('Last Name') : (lastName)}
                         />
                     </div>
                     <div className="form-group">
@@ -141,16 +133,10 @@ export default class NewStudent extends Component{
                     <div className="form-group">
                         <label for="studentImage">Image</label>
                         <input type="text" className="form-control" id="studentImage"
-                               defaultValue={this.formNew ?  ('http://lorempixel.com/200/200/nature/') : (studentImage)}
+                               defaultValue={this.formNew ?  ('https://s-media-cache-ak0.pinimg.com/736x/4a/e6/61/4ae66108c1dbae2597e5d52a438d5749.jpg') : (studentImage)}
                                placeholder={this.formNew ?  ('http://lorempixel.com/200/200/nature/') : (studentImage)}
                         />
                     </div>
-                    {/*<div className="form-group">        */}
-                        {/*<label for="studentUsername">Username</label>*/}
-                        {/*<input type="text" className="form-control" id="studentUsername"*/}
-                               {/*defaultValue="@NAME" placeholder="Enter username"*/}
-                        {/*/>*/}
-                    {/*</div>*/}
                     <div className="form-group">
                         <label for="exampleSelect1">Campus</label>
                         <select className="form-control" id="exampleSelect1">

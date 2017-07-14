@@ -22,7 +22,7 @@ export default class SingleStudent extends Component{
         var styles = { cssFloat:'right' };
 
         return (
-            <div className="col-md-7">
+            <div className="col-md-12">
                 {
                     student.map(student => {
                         return (
@@ -32,16 +32,13 @@ export default class SingleStudent extends Component{
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
                                         <img src={ student.image } />
                                     </div>
 
-                                    <div className="col-md-4">
-                                        <ul>
-                                            <li>{ `${student.firstName} ${student.lastName}`}</li>
-                                            <li>{ student.email }</li>
-                                            <li><Link to={`/campuses/${student.campus.id}`}>{ student.campus.name } Campus</Link></li>
-                                        </ul>
+                                    <div className="col-md-6">
+                                        <h4>{ student.email } </h4>
+                                        <h4><Link to={`/campuses/${student.campus.id}`}>{ student.campus.name } Campus</Link></h4>
                                     </div>
                                 </div>
                             </div>

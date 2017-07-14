@@ -5,26 +5,16 @@ const models=require('../db/models');
 const Students=models.Student;
 const Campuses=models.Campus;
 const Users=models.User;
-
-// If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
-// I know this because we automatically send index.html for all requests that don't make sense in our backend.
-// Ideally you would have something to handle this, so if you have time try that out!
-api.get('/hello', (req, res) => res.send({hello: 'world'}));
+module.exports = api;
 
 // STUDENTS
 // GET ALL
 api.get('/students', (req, res, next) => {
     Students.findAll({ include: [ Campuses ], order: '"firstName" ASC' })
     .then(function(students) {
-        // console.log(JSON.stringify(students));
         res.json(students);
     })
     .catch(next);
-
-    // Students.findAll({})
-    // .then(students => res.json(students))
-    // .catch(next);
-
 });
 
 api.get('/students/:studentId', (req, res, next) => {
@@ -49,7 +39,6 @@ api.post('/students/new', (req, res, next) => {
     var studentEmail=req.body.email;
     var studentImage=req.body.image;
     var studentCampus=Number(req.body.campusId);
-    console.log("TEST", req.body);
 
     Students.create({
         firstName: studentFirst,
@@ -59,7 +48,6 @@ api.post('/students/new', (req, res, next) => {
         campusId: studentCampus
     })
     .then(function (data) {
-        console.log("DATA",data);
         res.sendStatus(201);
     })
     .catch(next);
@@ -117,22 +105,6 @@ api.delete('/students/:studentId', (req, res, next) => {
         });
     }
 
-    // Students.destroy({
-    //     where: {
-    //         id: e.target.id
-    //     }
-    // })
-    // .then(function (data) {
-    //     console.log("data",data);
-    //     if(data===0){res.sendStatus(404);}
-    //     else{
-    //         res.status(204);
-    //         res.send('done');
-    //     }
-    //
-    // })
-    // .catch(next);
-
 });
 
 
@@ -145,10 +117,6 @@ api.get('/campuses', (req, res, next) => {
         res.json(campuses);
     })
     .catch(next);
-
-    // Campuses.findAll({ order: '"name" ASC'})
-    //     .then(campuses => res.json(campuses))
-    //     .catch(next);
 });
 
 // GET BY ID
@@ -245,15 +213,6 @@ api.delete('/campuses/:campusId', (req, res, next) => {
                 data.destroy({force: true})
                 .then(function (data) {
                     res.send(data);
-
-                    // re-query send back data of all campuses
-                    // doesn't work
-                    // Campuses.findAll({})
-                    // .then(campuses => {
-                    //     console.log("campuses========",campuses[0],"campuses========");
-                    //     res.send(campuses[0]);
-                    // })
-                    // .catch(next);
                 });
             }
             else {
@@ -271,4 +230,3 @@ api.get('/users', (req, res, next) => {
     res.send('Users');
 });
 
-module.exports = api;
